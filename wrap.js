@@ -1,0 +1,64 @@
+/* wrap.js RequireJS plugin
+ * Copyright 2012, Dave Geddes (@geddesign)
+ * wrap.js may be freely distributed under the MIT license.
+ */
+
+define(['lib/text'], function (text) {
+  return {
+    buildMap:{},
+
+    load:function (name, req, load, config) {
+      var _this = this,
+        module = config.wrapJS && config.wrapJS[name]
+
+      // if no module to load return early.
+      if (!module) {
+        return load();
+      }
+
+      // read the current module configuration for any dependencies that are required to run this particular non-AMD script.
+      req(module.deps || [], function () {
+        //for the build, get the contents with the text plugin and store the contents of the script for the write() function
+        if (config.isBuild) {
+          text.get(req.toUrl(name), function (scriptContent) {
+            _this.buildMap[name] = {
+              content:scriptContent,
+              deps:module.deps || [],
+              attach:config.wrapJS[name].attach
+            }
+            return load();
+          });
+        }
+        else {
+          // Require this module
+          req([name], function () {
+            // Attach property
+            return load(getAttach(config.wrapJS[name].attach));
+          });
+        }
+      });
+    },
+
+    /* write the output during the build, effectively turning the script into an AMD module */
+    write:function (pluginName, name, write) {
+      var module = this.buildMap[name],
+        deps = module.deps.map(toQuotes).join(', '),
+        output = '/* script wrapped by the wrap! plugin */ \n ' +
+          'define("' + pluginName + '!' + name + '", [' + deps + '], function(){ \n' +
+          module.content + '\n' +
+          'return ' + module.attach +
+          '});\n';
+      write(output);
+    }
+  }
+
+  function toQuotes(val) {
+    return " \"" + val + "\"";
+  }
+
+  // return the correct attached object
+  function getAttach(attach) {
+    
+//    return (typeof attach === 'function') ? attach.apply(this, arguments) : attach;
+  }
+});

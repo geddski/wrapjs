@@ -1,6 +1,7 @@
 //wrap the scripts that have dependencies, specify what to return for the AMD module, and remove the script's global
 require.config({
-  paths:{ 'wrap':'../wrap', 'text':'lib/text' },
+  paths:{ 'wrap':'../../wrap', 'text':'lib/text' },
+  baseUrl:'js/',
   wrapJS:{
     'pizza':{
       deps:['cheese'],

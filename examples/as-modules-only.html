@@ -2,12 +2,13 @@
 <html>
 <head>
   <title>turn into modules with no more globals</title>
-  <script type="text/javascript" src="lib/require.js"></script>
+  <script type="text/javascript" src="js/lib/require.js"></script>
   <script type="text/javascript">
 
     //wrap the scripts that have dependencies, specify what to return for the AMD module, and remove the script's global
     require.config({
-      paths:{ 'wrap':'../wrap', 'text':'lib/text' },
+      paths:{ 'wrap':'../../wrap', 'text':'lib/text' },
+      baseUrl:'js/',
       wrapJS: {
         'pizza': {
           deps: ['cheese'],

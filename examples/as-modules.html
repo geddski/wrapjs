@@ -2,12 +2,13 @@
 <html>
 <head>
   <title>turn scripts into modules</title>
-  <script type="text/javascript" src="lib/require.js"></script>
+  <script type="text/javascript" src="js/lib/require.js"></script>
   <script type="text/javascript">
 
     //wrap the scripts that have dependencies and specify what to return for the AMD module
     require.config({
-      paths:{ 'wrap':'../wrap', 'text':'lib/text' },
+      paths:{ 'wrap':'../../wrap', 'text':'lib/text' },
+      baseUrl:'js/',
       wrapJS: {
         'pizza': {
           deps: ['cheese'],

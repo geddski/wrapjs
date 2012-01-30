@@ -16,7 +16,7 @@ define(['lib/text'], function (text) {
         return load();
       }
 
-      // read the current module configuration for any dependencies that are required to run this particular non-AMD script.
+      // load the wrapped script's dependencies
       req(module.deps || [], function () {
         //for the build, get the contents with the text plugin and store the contents of the script for the write() function
         if (config.isBuild) {
@@ -30,7 +30,7 @@ define(['lib/text'], function (text) {
           });
         }
         else {
-          // Require this module
+          // load the script now that dependencies are loaded
           req([name], function () {
             // Attach property
             return load(getAttach(config.wrapJS[name].attach));
@@ -58,7 +58,6 @@ define(['lib/text'], function (text) {
 
   // return the correct attached object
   function getAttach(attach) {
-    
-//    return (typeof attach === 'function') ? attach.apply(this, arguments) : attach;
+    return (typeof attach === 'function') ? attach.apply(this, arguments) : attach;
   }
 });

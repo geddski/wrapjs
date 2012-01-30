@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>keep as globals example</title>
+  <script type="text/javascript" src="lib/require.js"></script>
+  <script type="text/javascript">
+
+    //wrap the scripts that have dependencies and specify what to return for the AMD module
+    require.config({
+      paths:{ 'wrap':'../wrap' },
+      wrapJS: {
+        'pizza': {
+          deps: ['cheese'],
+          attach: 'pizza'
+        }
+      }
+    });
+
+    // requiring pizza will now make sure cheese is loaded first
+    require(['wrap!pizza'], function(pizza){
+      // notice that the scripts are available as parameters to this callback, as if it were an AMD module
+      console.log('mmm', pizza.name);
+      console.log('mmm', pizza.ingredients[0].name);
+    });
+
+  </script>
+</head>
+</html>

@@ -3,7 +3,7 @@
  * wrap.js may be freely distributed under the MIT license.
  */
 
-define(['lib/text'], function (text) {
+define(['text'], function (text) {
   return {
     buildMap:{},
 

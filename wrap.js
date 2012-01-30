@@ -25,7 +25,7 @@ define(['lib/text'], function (text) {
               content:scriptContent,
               deps:module.deps || [],
               attach:config.wrapJS[name].attach
-            }
+            };
             return load();
           });
         }
@@ -50,7 +50,7 @@ define(['lib/text'], function (text) {
           '});\n';
       write(output);
     }
-  }
+  };
 
   function toQuotes(val) {
     return " \"" + val + "\"";

@@ -9,7 +9,7 @@ Inpired by Tim Branyen's [use.js plugin](http://tbranyen.com/post/amdrequirejs-s
 wrap.js depends on the [text plugin](http://requirejs.org/docs/api.html#text)
 
 ## Usage
-In your require.config (in *both* your app and your app.build.js), use the wrapJS object to specify which scripts you want to wrap.
+In your require.config use the wrapJS object to specify which scripts you want to wrap.
 Use the `deps` attribute to specify all the script's dependencies. 
 Use the `attach` attribute to specify the global name of the library (think $, _, Backbone, etc)
 The following example wraps underscore and backbone:
@@ -41,6 +41,8 @@ require('wrap!backbone', function(Backbone){
   console.log(Backbone); //now returns Backbone, just as if Backbone were an AMD module
 }
 ```
+
+NOTE: As of RequireJS 1.0.5 you can reuse your app's main.js config as part of your build config, by using the new mainConfigFile setting: `mainConfigFile:'path/to/main.js'` So you only have to specify the wrapJS stuff once.
 
 ## How It Works
 

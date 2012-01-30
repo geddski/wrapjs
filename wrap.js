@@ -53,7 +53,7 @@ define(['text'], function (text) {
   };
 
   function toQuotes(val) {
-    return " \"" + val + "\"";
+    return "\"" + val + "\"";
   }
 
   // return the correct attached object

@@ -44,7 +44,7 @@ define(['text'], function (text) {
       var module = this.buildMap[name],
         deps = module.deps.map(toQuotes).join(', '),
         output = '/* script wrapped by the wrap! plugin */ \n ' +
-          'define("' + pluginName + '!' + name + '", [' + deps + '], function(){ \n' +
+          'define("' + pluginName + '!' + name + '", ['+ deps + '], function(){ \n' +
           module.content + '\n' +
           'return ' + module.attach +
           '});\n';

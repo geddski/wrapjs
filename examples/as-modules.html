@@ -7,7 +7,7 @@
 
     //wrap the scripts that have dependencies and specify what to return for the AMD module
     require.config({
-      paths:{ 'wrap':'../wrap' },
+      paths:{ 'wrap':'../wrap', 'text':'lib/text' },
       wrapJS: {
         'pizza': {
           deps: ['cheese'],

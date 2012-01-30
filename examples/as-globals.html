@@ -7,7 +7,7 @@
 
     //wrap the scripts that have dependencies
     require.config({
-      paths: { 'wrap': '../wrap' },
+      paths: { 'wrap': '../wrap', 'text': 'lib/text' },
       wrapJS: {
         'pizza': {
           deps: ['cheese']

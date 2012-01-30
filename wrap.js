@@ -58,6 +58,6 @@ define(['lib/text'], function (text) {
 
   // return the correct attached object
   function getAttach(attach) {
-    return (typeof attach === 'function') ? attach.apply(this, arguments) : attach;
+    return (typeof attach === 'function') ? attach.apply(this, arguments) : this[attach];
   }
 });

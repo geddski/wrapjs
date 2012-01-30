@@ -21,6 +21,9 @@
       // notice that the scripts are available as parameters to this callback, as if it were an AMD module
       console.log('mmm', pizza.name);
       console.log('mmm', pizza.ingredients[0].name);
+
+      //notice though that these are still available as global variables
+      console.log('still global: ', window.pizza.name);
     });
 
   </script>

@@ -24,7 +24,6 @@ define(['text'], function (text) {
             _this.buildMap[name] = {
               content:scriptContent,
               deps:module.deps || [],
-//              attach:getBuildAttach(config.wrapJS[name].attach)
               attach:config.wrapJS[name].attach
             };
             return load();
@@ -34,7 +33,6 @@ define(['text'], function (text) {
           // load the script now that dependencies are loaded
           req([name], function () {
             // Attach property
-            //todo needs to call the function or get the global
             return load(getAttach(config.wrapJS[name].attach));
           });
         }
@@ -51,8 +49,6 @@ define(['text'], function (text) {
           "var attach = "+attach+"; \n" +
           "return (typeof attach === 'function') ? attach.apply(this) : attach; \n" +
         "}())",
-
-//        attach = (typeof module.attach === 'function') ? '(' + module.attach + '())' : module.attach,
         output = '/* script wrapped by the wrap! plugin */\n'+
           'define("' + pluginName + '!' + name + '", ['+ deps + '], function(){ \n' +
           module.content + '\n' +

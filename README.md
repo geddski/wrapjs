@@ -68,7 +68,7 @@ define('wrap!backbone', ['jquery', 'underscore'], function(){
 });
 ```
 
-NOTE: the generated AMD module contains an immediate function that resolves to and returns "Backbone" in the example above. Pure JS magic.
+NOTE: the generated AMD module contains an immediate function that resolves to and returns Backbone in the example above. Pure JS magic.
 
 So there you have it. The wrap.js plugin turns any old script into an AMD module with just a little config.
 

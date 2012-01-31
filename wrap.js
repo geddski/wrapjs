@@ -67,18 +67,7 @@ define(['text'], function (text) {
   }
 
   // return the correct attached object
-  function getBuildAttach(attach) {
-    if(typeof attach === 'function'){
-      return attach;
-    }
-    else{
-      return this[attach];
-    }
-
-//    return (typeof attach === 'function') ? attach.apply(this, arguments) : this[attach];
-  }
-
-  function getAttach(){
+  function getAttach(attach){
     return (typeof attach === 'function') ? attach.apply(this, arguments) : this[attach];
   }
 });

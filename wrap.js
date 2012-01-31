@@ -6,11 +6,9 @@
 define(['text'], function (text) {
   return {
     buildMap:{},
-
     load:function (name, req, load, config) {
       var _this = this,
-        module = config.wrapJS && config.wrapJS[name]
-
+        module = config.wrapJS && config.wrapJS[name];
       // if no module to load return early.
       if (!module) {
         return load();

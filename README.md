@@ -61,9 +61,17 @@ define('wrap!backbone', ['jquery', 'underscore'], function(){
   (function(){
     //backbone stuff
   }).call(this);
-  return Backbone; //it knows what to return because of our 'attach' attribute
+  return (function () {
+    var attach = Backbone;
+    return (typeof attach === 'function') ? attach.apply(this) : attach;
+  }());
 });
 ```
 
-So there you have it. The wrap.js plugin turns any old script into an AMD module with just a little config. 
+NOTE: the generated AMD module contains an immediate function that resolves to and returns "Backbone" in the example above. Pure JS magic.
+
+So there you have it. The wrap.js plugin turns any old script into an AMD module with just a little config.
+
+## Examples
+I've included several examples in the `examples` directory. Will post more info shortly.
 

@@ -4,37 +4,27 @@ version 0.2.0
 
 A RequireJS plugin for wrapping regular scripts as AMD modules.
 This is useful for cases where regular scripts have dependencies, like jQuery plugins and Backbone.
-Inpired by Tim Branyen's [use.js plugin](http://tbranyen.com/post/amdrequirejs-shim-plugin-for-loading-incompatible-javascript)
-
-wrap.js depends on the [text plugin](http://requirejs.org/docs/api.html#text)
+Inpired by Tim Branyen's [use.js plugin](http://tbranyen.com/post/amdrequirejs-shim-plugin-for-loading-incompatible-javascript). Depends on the [text plugin](http://requirejs.org/docs/api.html#text)
 
 ## Usage
 In your require.config use the wrapJS object to specify which scripts you want to wrap.
 Use the `deps` attribute to specify all the script's dependencies. 
 Use the `attach` attribute to specify the global name of the library (think $, _, Backbone, etc)
-The following example wraps underscore and backbone:
+The following example wraps backbone, declaring underscore and jQuery as dependencies:
 
 
 ```js
 require.config({
   wrapJS: {
-
-    "underscore": {
-      attach: "_"
-    },
-
     "backbone": {
-      deps: ["wrap!underscore", "jquery"], //an array of the script's dependencies
-      attach: function(_, $) {  //this would be if you wanted to make Backbone JUST AMD, not global also
-        return this.Backbone.noConflict();
-      }
-    }
+      deps: ["underscore", "jquery"], //an array of the script's dependencies
+      attach: "Backbone"
   }
 });
 
 ```
 
-Now use the wrap plugin to load the files like so:
+Now use the wrap plugin to load the backbone (and its dependencies) like so:
 
 ```js
 require('wrap!backbone', function(Backbone){
@@ -42,7 +32,7 @@ require('wrap!backbone', function(Backbone){
 }
 ```
 
-NOTE: As of RequireJS 1.0.5 you can reuse your app's main.js config as part of your build config, by using the new mainConfigFile setting: `mainConfigFile:'path/to/main.js'` So you only have to specify the wrapJS stuff once.
+NOTE: As of RequireJS 1.0.5 you can reuse your app's main.js config as part of your build config, by using the new mainConfigFile setting: `mainConfigFile:'path/to/main.js'` So you only have to specify the wrapJS stuff once. Here's a sample [app.build.js](https://github.com/geddesign/wrap.js/blob/master/app.build.js).
 
 ## How It Works
 
@@ -72,6 +62,13 @@ NOTE: the generated AMD module contains an immediate function that resolves to a
 
 So there you have it. The wrap.js plugin turns any old script into an AMD module with just a little config.
 
-## Examples
-I've included several examples in the `examples` directory. Will post more info shortly.
+## More Examples
+I've included several examples in the `examples` directory. 
+By default the wrapped scripts are still available as globals. See [as-globals.html](https://github.com/geddesign/wrap.js/blob/master/examples/as-globals.html).
+
+The wrapped scripts are also returned to your callback just like AMD modules. See [as-modules.html](https://github.com/geddesign/wrap.js/blob/master/examples/as-modules.html).
+
+If you want to have the wrapped scripts no longer available as globals, you can remove the global and do any other custom things in a function you pass to the `attach` property. See [as-modules-only.html](https://github.com/geddesign/wrap.js/blob/master/examples/as-modules-only.html).
+
+
 

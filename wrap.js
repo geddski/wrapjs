@@ -28,8 +28,8 @@ define(['text'], function (text) {
           });
         }
         else {
-          // load the script now that dependencies are loaded
-          req([name], function () {
+          // load the script now that dependencies are loaded. use the `path` attribute if specified
+          req([config.wrapJS[name].path || name], function () {
             // Attach property
             return load(getAttach(config.wrapJS[name].attach));
           });

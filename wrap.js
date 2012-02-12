@@ -8,7 +8,10 @@ define(['text'], function (text) {
     buildMap:{},
     load:function (name, req, load, config) {
       var _this = this,
-        module = config.wrapJS && config.wrapJS[name];
+        module = config.wrapJS && config.wrapJS[name],
+        //use the `path` attribute if specified
+        path = config.wrapJS[name].path || name; 
+        
       // if no module to load return early.
       if (!module) {
         return load();
@@ -18,7 +21,7 @@ define(['text'], function (text) {
       req(module.deps || [], function () {
         //for the build, get the contents with the text plugin and store the contents of the script for the write() function
         if (config.isBuild) {
-          text.get(req.toUrl(name), function (scriptContent) {
+          text.get(req.toUrl(path), function (scriptContent) {
             _this.buildMap[name] = {
               content:scriptContent,
               deps:module.deps || [],
@@ -28,8 +31,8 @@ define(['text'], function (text) {
           });
         }
         else {
-          // load the script now that dependencies are loaded. use the `path` attribute if specified
-          req([config.wrapJS[name].path || name], function () {
+          // load the script now that dependencies are loaded.
+          req([path], function () {
             // Attach property
             return load(getAttach(config.wrapJS[name].attach));
           });

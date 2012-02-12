@@ -75,8 +75,8 @@ The wrapped scripts are also returned to your callback just like AMD modules. Se
 ### Remove Globals
 If you want to have the wrapped scripts no longer available as globals, you can remove the global—and do any other custom things—in a function you pass to the `attach` property. See [as-modules-only.html](https://github.com/geddesign/wrap.js/blob/master/examples/as-modules-only.html).
 
+### Using the path option
+Using the path option can help keep your config small. See [use-path-option.html](https://github.com/geddesign/wrap.js/blob/master/examples/use-path-option.html)
+
 ### Post-build example
 To see an example of a generated module, see the build-example.js [before](https://github.com/geddesign/wrap.js/blob/master/examples/js/build-example.js) and [after](https://github.com/geddesign/wrap.js/blob/master/examples-build/js/build-example.js).
-
-
-

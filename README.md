@@ -10,6 +10,7 @@ Inpired by Tim Branyen's [use.js plugin](http://tbranyen.com/post/amdrequirejs-s
 In your require.config use the wrapJS object to specify which scripts you want to wrap.
 Use the `deps` attribute to specify all the script's dependencies. 
 Use the `attach` attribute to specify the global name of the library (think $, _, Backbone, etc)
+Use the `path` attribute to specify the location of the script to wrap. Alternatively use require's regular path config. 
 The following example wraps backbone, declaring underscore and jQuery as dependencies:
 
 
@@ -64,11 +65,15 @@ So there you have it. The wrap.js plugin turns any old script into an AMD module
 
 ## More Examples
 I've included several examples in the `examples` directory. 
+
+### Use as Globals
 By default the wrapped scripts are still available as globals. See [as-globals.html](https://github.com/geddesign/wrap.js/blob/master/examples/as-globals.html).
 
+### Use as Modules
 The wrapped scripts are also returned to your callback just like AMD modules. See [as-modules.html](https://github.com/geddesign/wrap.js/blob/master/examples/as-modules.html).
 
-If you want to have the wrapped scripts no longer available as globals, you can remove the global and do any other custom things in a function you pass to the `attach` property. See [as-modules-only.html](https://github.com/geddesign/wrap.js/blob/master/examples/as-modules-only.html).
+### Remove Globals
+If you want to have the wrapped scripts no longer available as globals, you can remove the global—and do any other custom things—in a function you pass to the `attach` property. See [as-modules-only.html](https://github.com/geddesign/wrap.js/blob/master/examples/as-modules-only.html).
 
 
 

@@ -1,6 +1,7 @@
 
 js/build-example.js
 ----------------
+wrap!nachos
 js/cheese.js
 wrap!pizza
 js/build-example.js

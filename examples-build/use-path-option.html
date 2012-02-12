@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>use the path option</title>
+  <script type="text/javascript" src="js/lib/require.js"></script>
+  <script type="text/javascript">
+
+    //wrap the scripts that have dependencies and specify what to return for the AMD module
+    require.config({
+      // paths:{ 'wrap':'../../wrap', 'text':'lib/text', 'nachos': 'lib/nachos' },
+      paths:{ 'wrap':'../../wrap', 'text':'lib/text'},
+      baseUrl:'js/',
+      wrapJS: {
+        'nachos': {
+          deps: ['cheese'],
+          attach: 'nachos',
+          path: 'lib/nachos'
+        }
+      }
+    });
+
+    // requiring pizza will now make sure cheese is loaded first
+    require(['wrap!nachos'], function(nachos){
+      // notice that the scripts are available as parameters to this callback, as if it were an AMD module
+      console.log('mmm', nachos.name);
+      console.log('mmm', nachos.ingredients[0].name);
+
+      //notice though that these are still available as global variables
+      console.log('still global: ', window.nachos.name);
+    });
+
+  </script>
+</head>
+</html>

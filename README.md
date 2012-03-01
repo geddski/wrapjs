@@ -33,7 +33,7 @@ require('wrap!backbone', function(Backbone){
 }
 ```
 
-NOTE: As of RequireJS 1.0.5 you can reuse your app's main.js config as part of your build config, by using the new mainConfigFile setting: `mainConfigFile:'path/to/main.js'` So you only have to specify the wrapJS stuff once. Here's a sample [app.build.js](https://github.com/geddesign/wrap.js/blob/master/app.build.js).
+NOTE: As of RequireJS 1.0.5 you can reuse your app's main.js config as part of your build config, by using the new mainConfigFile setting: `mainConfigFile:'path/to/main.js'` So you only have to specify the wrapJS stuff once. Here's a sample [app.build.js](https://github.com/geddesign/wrapjs/blob/master/app.build.js).
 
 ## How It Works
 
@@ -67,16 +67,16 @@ So there you have it. The wrap.js plugin turns any old script into an AMD module
 I've included several examples in the `examples` directory. 
 
 ### Use as Globals
-By default the wrapped scripts are still available as globals. See [as-globals.html](https://github.com/geddesign/wrap.js/blob/master/examples/as-globals.html).
+By default the wrapped scripts are still available as globals. See [as-globals.html](https://github.com/geddesign/wrapjs/blob/master/examples/as-globals.html).
 
 ### Use as Modules
-The wrapped scripts are also returned to your callback just like AMD modules. See [as-modules.html](https://github.com/geddesign/wrap.js/blob/master/examples/as-modules.html).
+The wrapped scripts are also returned to your callback just like AMD modules. See [as-modules.html](https://github.com/geddesign/wrapjs/blob/master/examples/as-modules.html).
 
 ### Remove Globals
-If you want to have the wrapped scripts no longer available as globals, you can remove the global—and do any other custom things—in a function you pass to the `attach` property. See [as-modules-only.html](https://github.com/geddesign/wrap.js/blob/master/examples/as-modules-only.html).
+If you want to have the wrapped scripts no longer available as globals, you can remove the global—and do any other custom things—in a function you pass to the `attach` property. See [as-modules-only.html](https://github.com/geddesign/wrapjs/blob/master/examples/as-modules-only.html).
 
 ### Using the path option
-Using the `path` attribute can help keep your config small. See [use-path-option.html](https://github.com/geddesign/wrap.js/blob/master/examples/use-path-option.html)
+Using the `path` attribute can help keep your config small. See [use-path-option.html](https://github.com/geddesign/wrapjs/blob/master/examples/use-path-option.html)
 
 ### Post-build example
-To see an example of a generated module, see the build-example.js [before](https://github.com/geddesign/wrap.js/blob/master/examples/js/build-example.js) and [after](https://github.com/geddesign/wrap.js/blob/master/examples-build/js/build-example.js).
+To see an example of a generated module, see the build-example.js [before](https://github.com/geddesign/wrapjs/blob/master/examples/js/build-example.js) and [after](https://github.com/geddesign/wrap.js/blob/master/examples-build/js/build-example.js).

@@ -1,10 +1,13 @@
 buster.spec.expose();
 
-describe("Regular Require", function () {
+describe("Regular Require", function (run) {
+  // console.log('this', this);
+  console.log('require', require);
+  // console.log('spammy', spammy);
   require(['spec/mod1'], function (mod1) {
-    buster.run(function(){
+    run(function(){
       it("should work", function () {
-        expect(true).toEqual(true);
+        expect(mod1.name).toEqual("howdy");
       });
     });
   });

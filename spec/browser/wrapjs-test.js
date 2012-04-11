@@ -26,7 +26,6 @@ require.config({
 describe("simple attach", function (run) {
   require(['wrap!pizza'], function (pza) {
     run(function(){
-
       it("should be available as a global", function () {
         expect(window.pizza.name).toEqual('pizza');
         expect(window.pizza.ingredients[0].name).toEqual('cheese');
@@ -81,13 +80,8 @@ describe('post-build', function(run){
 
       it('frosting dependency should still be global', function(){
         expect(window.frosting).toBeDefined();
+        expect(window.frosting.name).toEqual('frosting');
       });
     });
   });
 });
-
-// describe('multiple globals exposed', function(){
-//   it('//should expose all of the ones specified', function(){
-//     //TODO brainstorm on this more.
-//   });
-// });

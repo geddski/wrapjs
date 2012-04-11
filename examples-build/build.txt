@@ -3,4 +3,5 @@ js/build-example.js
 ----------------
 wrap!frosting
 wrap!donut
+js/lib/frosting.js
 js/build-example.js

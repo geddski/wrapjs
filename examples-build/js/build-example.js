@@ -22,7 +22,7 @@ return (typeof attach === 'function') ? attach.apply(this) : attach;
 }());
 });
 
-//NOTE: I commented this out for the sake of loading this file during the tests. 
+//NOTE: I commented this out for the sake of loading this file during the tests.
 
 // //see config.js for the wrapJS config being used here
 // require(['require', 'config'], function(require){

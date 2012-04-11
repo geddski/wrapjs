@@ -1,6 +1,6 @@
 # wrap.js
 
-version 0.2.1
+version 0.2.2
 
 A RequireJS plugin for wrapping regular scripts as AMD modules.
 This is useful for cases where regular scripts have dependencies, like jQuery plugins and Backbone.

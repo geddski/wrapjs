@@ -7,5 +7,5 @@ config["Browser Tests"] = {
 	tests:[
 		"spec/browser/*.js"
 	], 
-  resources:['examples/js/*.js', 'examples/js/lib/*.js', 'wrap.js']
+  resources:['examples/js/*.js', 'examples/js/lib/*.js', 'examples-build/js/*.js', 'wrap.js']
 };

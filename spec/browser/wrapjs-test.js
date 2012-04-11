@@ -66,11 +66,23 @@ describe('using the path option', function(run){
   });
 });
 
-// describe('post-build', function(){
-//   it('//should wrap the script in an AMD module', function(){
-    
-//   });
-// });
+describe('post-build', function(run){
+  require(['../../examples-build/js/build-example'], function(){
+    run(function(){
+      // it('should wrap the script in an AMD module', function(){
+      //   var wrappedFrosting = require('wrap!frosting');
+      //   expect(wrappedFrosting).toBeDefined();
+      //   expect(wrappedFrosting.name).toEqual('frosting');
+      // });
+
+      it('should not have loaded a duplicate script separately as a global', function(){
+        console.log(window.donut);
+        // console.log('window.frosting', window.frosting);
+        expect(window.donut).not().toBeDefined();
+      });
+    });
+  });
+});
 
 // describe('multiple globals exposed', function(){
 //   it('//should expose all of the ones specified', function(){

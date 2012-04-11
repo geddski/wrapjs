@@ -3,10 +3,11 @@
   baseUrl: "js/",
   dir:"examples-build/",
   optimize: 'none', //for sake of example don't compress
-  mainConfigFile:'examples/js/build-example.js',
+  mainConfigFile:'examples/js/config.js',
   modules:[
     { name:"build-example",
-      exclude: ['text', 'wrap']
+      //exluding config for the sake of testing. 
+      exclude: ['text', 'wrap', 'config']
     }
   ],
   findNestedDependencies:true

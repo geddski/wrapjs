@@ -1,7 +1,6 @@
 
 js/build-example.js
 ----------------
-wrap!nachos
-js/cheese.js
-wrap!pizza
+wrap!frosting
+wrap!donut
 js/build-example.js

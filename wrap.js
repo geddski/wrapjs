@@ -12,8 +12,9 @@ define(['text'], function (text) {
       var _this = this,
         module = config.wrapJS && config.wrapJS[name],
         //use the `path` attribute if specified
-        path = config.wrapJS[name].path || name; 
-        
+        path = config.wrapJS[name].path || name;
+       
+
       // if no module to load return early.
       if (!module) {
         return load();

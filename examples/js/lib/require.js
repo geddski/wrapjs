@@ -5,6 +5,7 @@
  */
 /*jslint strict: false, plusplus: false, sub: true */
 /*global window, navigator, document, importScripts, jQuery, setTimeout, opera */
+
 var requirejs, require, define;
 (function () {
     //Change this version number for each release.
@@ -137,7 +138,7 @@ var requirejs, require, define;
     if (typeof define !== "undefined") {
         //If a define is already in play via another AMD loader,
         //do not overwrite.
-        // return;
+        return;
     }
 
     if (typeof requirejs !== "undefined") {

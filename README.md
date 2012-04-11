@@ -4,7 +4,7 @@ version 0.2.2
 
 A RequireJS plugin for wrapping regular scripts as AMD modules.
 This is useful for cases where regular scripts have dependencies, like jQuery plugins and Backbone.
-Inpired by Tim Branyen's [use.js plugin](http://tbranyen.com/post/amdrequirejs-shim-plugin-for-loading-incompatible-javascript). Depends on the [text plugin](http://requirejs.org/docs/api.html#text)
+Depends on the [text plugin](http://requirejs.org/docs/api.html#text)
 
 ## Usage
 In your require.config use the wrapJS object to specify which scripts you want to wrap.

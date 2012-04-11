@@ -19,6 +19,10 @@ require.config({
       deps: ['lib/wheat'],
       attach: 'rolls',
       path: 'lib/rolls'
+    },
+    'lib/tasty.hamburger': {
+      deps: ['lib/ketchup'],
+      attach: "hamburger"
     }
   }
 });
@@ -60,6 +64,17 @@ describe('using the path option', function(run){
       it('should find the right lib based on the path', function(){
         expect(rolls.name).toEqual('rolls');
         expect(rolls.ingredients[0].name).toEqual('wheat');
+      });
+    });
+  });
+});
+
+describe('paths containing a dot', function(run){
+  require(['wrap!lib/tasty.hamburger'], function (hamburger) {
+    run(function(){
+      it('should find the right lib based on the path', function(){
+        expect(hamburger.name).toEqual('hamburger');
+        expect(hamburger.ingredients[0].name).toEqual('ketchup');
       });
     });
   });

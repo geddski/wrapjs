@@ -1,6 +1,8 @@
 /* wrap.js RequireJS plugin
  * Copyright 2012, Dave Geddes (@geddesign)
  * wrap.js may be freely distributed under the MIT license.
+ * version 0.2.1
+ * docs: http://github.com/geddesign/wrapjs
  */
 
 define(['text'], function (text) {
@@ -10,8 +12,9 @@ define(['text'], function (text) {
       var _this = this,
         module = config.wrapJS && config.wrapJS[name],
         //use the `path` attribute if specified
-        path = config.wrapJS[name].path || name; 
-        
+        path = config.wrapJS[name].path || name;
+       
+
       // if no module to load return early.
       if (!module) {
         return load();

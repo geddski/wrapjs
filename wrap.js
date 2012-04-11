@@ -2,6 +2,7 @@
  * Copyright 2012, Dave Geddes (@geddesign)
  * wrap.js may be freely distributed under the MIT license.
  * version 0.2.1
+ * docs: http://github.com/geddesign/wrapjs
  */
 
 define(['text'], function (text) {

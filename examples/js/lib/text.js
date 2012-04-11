@@ -1,5 +1,5 @@
 /**
- * @license RequireJS text 1.0.2 Copyright (c) 2010-2011, The Dojo Foundation All Rights Reserved.
+ * @license RequireJS text 1.0.7 Copyright (c) 2010-2011, The Dojo Foundation All Rights Reserved.
  * Available via the MIT or new BSD license.
  * see: http://github.com/jrburke/requirejs for details
  */
@@ -7,6 +7,7 @@
 /*global require: false, XMLHttpRequest: false, ActiveXObject: false,
   define: false, window: false, process: false, Packages: false,
   java: false, location: false */
+
 (function () {
     var progIds = ['Msxml2.XMLHTTP', 'Microsoft.XMLHTTP', 'Msxml2.XMLHTTP.4.0'],
         xmlRegExp = /^\s*<\?xml(\s)+version=[\'\"](\d)*.(\d)*[\'\"](\s)*\?>/im,
@@ -40,7 +41,12 @@
             fs = require.nodeRequire('fs');
 
             get = function (url, callback) {
-                callback(fs.readFileSync(url, 'utf8'));
+                var file = fs.readFileSync(url, 'utf8');
+                //Remove BOM (Byte Mark Order) from utf8 files if it is there.
+                if (file.indexOf('\uFEFF') === 0) {
+                    file = file.substring(1);
+                }
+                callback(file);
             };
         } else if (typeof Packages !== 'undefined') {
             //Why Java, why is this so awkward?
@@ -83,7 +89,7 @@
         }
 
         text = {
-            version: '1.0.2',
+            version: '1.0.7',
 
             strip: function (content) {
                 //Strips <?xml ...?> declarations so that external SVG and XML
@@ -222,7 +228,6 @@
                     url = req.toUrl(nonStripName),
                     useXhr = (config && config.text && config.text.useXhr) ||
                              text.useXhr;
-
 
                 //Load the text. Use XHR if possible and in a browser.
                 if (!hasLocation || useXhr(url, defaultProtocol, defaultHostName, defaultPort)) {

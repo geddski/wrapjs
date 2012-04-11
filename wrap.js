@@ -1,7 +1,7 @@
 /* wrap.js RequireJS plugin
  * Copyright 2012, Dave Geddes (@geddesign)
  * wrap.js may be freely distributed under the MIT license.
- * version 0.2.1
+ * version 0.2.2
  * docs: http://github.com/geddesign/wrapjs
  */
 

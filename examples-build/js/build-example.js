@@ -5,8 +5,7 @@ frosting = {
   name:"frosting"
 };
 return (function () {
-var attach = frosting;
-// console.log(window.frosting);
+var attach = frosting; 
 return (typeof attach === 'function') ? attach.apply(this) : attach; 
 }());
 });
@@ -22,6 +21,8 @@ var attach = function (){var donut=this.donut;delete this.donut;return donut};
 return (typeof attach === 'function') ? attach.apply(this) : attach; 
 }());
 });
+
+//NOTE: I commented this out for the sake of loading this file during the tests. 
 
 // //see config.js for the wrapJS config being used here
 // require(['require', 'config'], function(require){

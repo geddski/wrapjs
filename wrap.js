@@ -45,17 +45,26 @@ define(['text'], function (text) {
       var module = this.buildMap[name],
         deps = module.deps.map(toQuotes).join(', '),
         attach = module.attach,
-        //immediate function that executes the attach function or returns the global
         writeAttach = getWriteAttach(attach),
-        output = '/* script wrapped by the wrap! plugin */\n'+
-          'define("' + pluginName + '!' + name + '", ['+ deps + '], function(){ \n' +
-          module.content + '\n' +
-          'return ' + writeAttach + ';\n' +
-          '});\n';
+        generatedName = pluginName + '!' + name,
+        output = createModule(generatedName, deps, module.content, writeAttach);
       write(output);
     }
   };
 
+  function createModule(name, deps, content, ret){
+    return '/* script wrapped by the wrap! plugin */\n'+
+      'define("' + name + '", ['+ deps + '], function(){ \n' +
+      content + '\n' +
+      'return ' + ret + ';\n' +
+      '});\n';
+  }
+
+  /* 
+  Determines what to have the wrapping module return. Will either be a global variable
+  or an immediate function that will execute when the module is loaded. 
+  This is done to enable the removal of global variables once wrapped.
+  */
   function getWriteAttach(attach){
     if(typeof attach !== 'function') return attach;
     return "(function () {\n" +

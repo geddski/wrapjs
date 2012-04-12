@@ -13,12 +13,9 @@ define(['text'], function (text) {
         module = config.wrapJS && config.wrapJS[name],
         //use the `path` attribute if specified
         path = config.wrapJS[name].path || name;
-       
 
       // if no module to load return early.
-      if (!module) {
-        return load();
-      }
+      if (!module) return load();
 
       // load the wrapped script's dependencies
       req(module.deps || [], function () {
@@ -49,10 +46,7 @@ define(['text'], function (text) {
         deps = module.deps.map(toQuotes).join(', '),
         attach = module.attach,
         //immediate function that executes the attach function or returns the global
-        writeAttach = "(function () {\n" +
-          "var attach = "+attach+"; \n" +
-          "return (typeof attach === 'function') ? attach.apply(this) : attach; \n" +
-        "}())",
+        writeAttach = getWriteAttach(attach),
         output = '/* script wrapped by the wrap! plugin */\n'+
           'define("' + pluginName + '!' + name + '", ['+ deps + '], function(){ \n' +
           module.content + '\n' +
@@ -61,6 +55,14 @@ define(['text'], function (text) {
       write(output);
     }
   };
+
+  function getWriteAttach(attach){
+    if(typeof attach !== 'function') return attach;
+    return "(function () {\n" +
+      "var attach = "+attach+"; \n" +
+      "return (typeof attach === 'function') ? attach.apply(this) : attach; \n" +
+    "}())"  
+  }
 
   function toQuotes(val) {
     return "\"" + val + "\"";

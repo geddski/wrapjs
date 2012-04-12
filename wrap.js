@@ -44,31 +44,27 @@ define(['text'], function (text) {
     write:function (pluginName, name, write) {
       var module = this.buildMap[name],
         deps = module.deps.map(toQuotes).join(', '),
-        attach = module.attach,
-        writeAttach = getWriteAttach(attach),
         generatedName = pluginName + '!' + name,
-        output = createModule(generatedName, deps, module.content, writeAttach);
+        output = createModule(generatedName, deps, module.content, getReturnVal(module.attach));
       write(output);
     }
   };
 
-  /*
-    Generate AMD module to wrap the script with
-  */
+  /* Generate AMD module to wrap the script */ 
   function createModule(name, deps, content, ret){
     return '/* script wrapped by the wrap! plugin */\n'+
       'define("' + name + '", ['+ deps + '], function(){ \n' +
-      content + '\n' +
-      'return ' + ret + ';\n' +
+        content + '\n' +
+        'return ' + ret + ';\n' +
       '});\n';
   }
 
   /* 
     Determines what to have the wrapping module return. Will either be a global variable
-    or an immediate function that will execute when the module is loaded. 
-    This is done to enable the removal of global variables once wrapped.
+    or an immediate function that will execute when the module is loaded, 
+    enabling the removal of global variables once wrapped.
   */
-  function getWriteAttach(attach){
+  function getReturnVal(attach){
     if(typeof attach !== 'function') return attach;
     return "(function () {\n" +
       "var attach = "+attach+"; \n" +
@@ -76,11 +72,12 @@ define(['text'], function (text) {
     "}())"  
   }
 
+  /* surround a value with quotes */
   function toQuotes(val) {
     return "\"" + val + "\"";
   }
 
-  // return the correct attached object
+  /* return the correct attached object */
   function getAttach(attach){
     return (typeof attach === 'function') ? attach.apply(this, arguments) : this[attach];
   }

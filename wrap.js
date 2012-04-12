@@ -52,6 +52,9 @@ define(['text'], function (text) {
     }
   };
 
+  /*
+    Generate AMD module to wrap the script with
+  */
   function createModule(name, deps, content, ret){
     return '/* script wrapped by the wrap! plugin */\n'+
       'define("' + name + '", ['+ deps + '], function(){ \n' +
@@ -61,9 +64,9 @@ define(['text'], function (text) {
   }
 
   /* 
-  Determines what to have the wrapping module return. Will either be a global variable
-  or an immediate function that will execute when the module is loaded. 
-  This is done to enable the removal of global variables once wrapped.
+    Determines what to have the wrapping module return. Will either be a global variable
+    or an immediate function that will execute when the module is loaded. 
+    This is done to enable the removal of global variables once wrapped.
   */
   function getWriteAttach(attach){
     if(typeof attach !== 'function') return attach;

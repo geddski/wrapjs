@@ -50,8 +50,8 @@ define(['text'], function (text) {
         attach = module.attach,
         //immediate function that executes the attach function or returns the global
         writeAttach = "(function () {\n" +
-          "var attach = "+attach+"; \n" +
-          "return (typeof attach === 'function') ? attach.apply(this) : attach; \n" +
+          "var attach = "+((typeof attach === 'function') ? attach : toQuotes(attach))+"; \n" +
+          "return (typeof attach === 'function') ? attach.apply(this) : this[attach]; \n" +
         "}())",
         output = '/* script wrapped by the wrap! plugin */\n'+
           'define("' + pluginName + '!' + name + '", ['+ deps + '], function(){ \n' +

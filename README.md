@@ -1,7 +1,9 @@
+# DEPRECATED
+## This plugin's wildest dreams came true and its functionality was added to RequireJS 2.0 <br/>Please upgrade your RequireJS and use its new [shim config](http://requirejs.org/docs/api.html#config-shim) instead of wrap.js
+
+
 # wrap.js
-
 version 0.2.2
-
 A RequireJS plugin for wrapping regular scripts as AMD modules.
 This is useful for cases where regular scripts have dependencies, like jQuery plugins and Backbone.
 Depends on the [text plugin](http://requirejs.org/docs/api.html#text)
